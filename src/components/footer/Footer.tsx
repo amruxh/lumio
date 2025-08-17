@@ -12,9 +12,6 @@ const Footer = () => {
 
   return (
     <>
-      <div className="flex md:hidden w-full flex-grow-0 md:flex-grow-1 fixed bottom-0 py-3 bg-[var(--background)] border-t border-t-[var(--border)]">
-        <Navigation />
-      </div>
       <footer className="bg-[var(--background)] text-[var(--foreground)] px-5 py-10 mt-12 border-t border-[var(--border)] transition-all duration-300">
         <div className="max-w-screen-xl mx-auto flex flex-wrap justify-between gap-8">
           {/* Brand */}

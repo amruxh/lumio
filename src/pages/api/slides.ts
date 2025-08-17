@@ -18,7 +18,7 @@ const data = [
   {
     id: 79,
     image: "/zenbook.jpg",
-    title: "Asus Zenbook Pro Dual Screen Laptop",
+    title: "Asus Zenbook Pro",
     description: "Dual Screen Laptop is a high-performance device with dual screens"
   },
   {

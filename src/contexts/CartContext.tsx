@@ -52,7 +52,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
                 .map((item) =>
                     item.id === id ? { ...item, length: item.length - 1 } : item
                 )
-                // .filter((item) => item.length > 0) // remove if quantity reaches 0
+                .filter((item) => item.length > 0) // remove if quantity reaches 0
         );
     };
 

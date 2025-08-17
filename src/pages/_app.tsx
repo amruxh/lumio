@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import RenderLoadingUI from "@/components/loading/RenderLoadingUI";
 import { AuthProvider } from "@/contexts/LoginContext";
+import BottomNavigation from "@/components/BottomNavigation/BottomNavigation";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -40,6 +41,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <CartProvider>
           <Header />
           {loading ? <RenderLoadingUI loadingPage={loadingPage} /> : <Component {...pageProps} />}
+          <BottomNavigation />
           <Footer />
         </CartProvider>
       </AuthProvider>
