@@ -9,14 +9,16 @@ import { useEffect, useState } from "react";
 type CheckoutProduct = Product & { quantity: number | undefined };
 
 const Checkout = ({ productId }: { productId: string | null }) => {
-    const auth = useAuth();
+    const { isExists, loading } = useAuth();
     const router = useRouter();
     const { cart } = useCart();
     const [products, setProducts] = useState<CheckoutProduct[]>([]);
 
-    useEffect(() => {
-        if (!auth.isExists()) router.push('/login');
-    }, [auth, router]);
+useEffect(() => {
+  if (!loading && !isExists) {
+    router.push("/login");
+  }
+}, [loading, isExists, router]);
 
 useEffect(() => {
         const fetchProducts = async () => {

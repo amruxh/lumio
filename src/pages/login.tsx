@@ -4,6 +4,7 @@ import { useAuth } from "@/contexts/LoginContext";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
+import { generateToken } from "@/functions/utils";
 
 const Login = () => {
   const router = useRouter();
@@ -21,7 +22,9 @@ const Login = () => {
       return;
     }
 
-    login(email, password);
+    const token = generateToken(email, password);
+
+    login(token);
     router.back();
   };
 

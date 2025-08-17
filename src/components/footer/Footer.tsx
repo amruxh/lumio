@@ -1,6 +1,5 @@
 "use client"
 import Link from "next/link";
-import Navigation from "../navigation/Navigation";
 
 const Footer = () => {
   const navItems = [

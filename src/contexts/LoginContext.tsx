@@ -2,54 +2,39 @@
 import { createContext, useState, useContext, useEffect } from "react";
 
 interface AuthContextType {
-    creds: {
-        email: string;
-        password: string;
-    }
-    isExists: () => boolean;
-    login: (email: string, password: string) => void;
+    isExists: boolean;
+    loading: boolean;
+    login: (token: string) => void;
     logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+    const [isExists, setIsExists] = useState(false);
+    const [loading, setLoading] = useState(true);
 
-    const [creds, setCreds] = useState<{ email: string; password: string }>({
-        email: "",
-        password: "",
-    });
+    useEffect(() => {
+        if(typeof window === 'undefined') return;
+        const token = localStorage.getItem("authToken");
+        if (token) {
+            setIsExists(true);
+        }
+        setLoading(false);
+    }, []);
 
-    const isExists = () => creds.email !== "" && creds.password !== "";
-
-    const login = (email: string, password: string) => {
-        setCreds({ email, password });
+    const login = (token: string) => {
+        localStorage.setItem("authToken", token);
+        setIsExists(true);
     };
 
     const logout = () => {
-        setCreds({ email: "", password: "" });
+        localStorage.removeItem("authToken");
+        setIsExists(false);
     };
 
-    useEffect(() => {
-        if (typeof window === "undefined") return; // Don't run on server
-
-        try {
-            const savedCreds = JSON.parse(localStorage.getItem("creds") || "null");
-            if (savedCreds?.email && savedCreds?.password) {
-                setCreds(savedCreds);
-            }
-        } catch {
-            // Ignore bad JSON
-        }
-    }, []);
-
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        localStorage.setItem("creds", JSON.stringify(creds));
-    }, [creds]);
-
     return (
-        <AuthContext.Provider value={{ creds, login, logout, isExists }}>
+        <AuthContext.Provider value={{ isExists, login, logout, loading }}>
             {children}
         </AuthContext.Provider>
     )

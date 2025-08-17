@@ -22,7 +22,7 @@ const Header = () => {
             Illuminate Your Shopping.
           </p>
         </div>
-        {auth.isExists() ? (
+        {auth.isExists ? (
           <button
             type="button"
             onClick={auth.logout}
@@ -39,7 +39,7 @@ const Header = () => {
       {pathname === "/shop" && <Search />}
       <div className="md:flex hidden w-full max-w-lg flex-grow-0 md:flex-grow-1 items-center">
         <Navigation />
-        {auth.isExists() ? (
+        {auth.isExists ? (
           <button
             type="button"
             onClick={auth.logout}
