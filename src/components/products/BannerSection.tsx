@@ -29,34 +29,27 @@ const BannerSection = () => {
         },
     ]
     return (
-        <div className="flex flex-wrap">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {images.map((image, index) => (
                 <Link
                     href={'/shop/' + image.id}
                     key={"banner-" + index}
-                    className="relative w-full md:w-1/2 h-60 md:h-100">
-
+                    className="relative w-full h-60 overflow-hidden rounded-lg shadow-lg group"
+                >
                     <Image
                         src={image.src}
                         alt={image.title}
                         fill
-                        sizes="(max-width: 768px) 100vw,
-                   (max-width: 1200px) 50vw,
-                   33vw"
-                        className="absolute object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="absolute object-cover transition-transform duration-300 group-hover:scale-110"
                     />
 
-                    {/* Overlay */}
-                    <div className="relative group size-full">
-                        {/* Overlay */}
-                        <div className="absolute inset-0 z-10 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                            <div className="text-[var(--background)] text-center">
-                                <h3 className="font-bold text-3xl">{image.title}</h3>
-                                <p className="text-[var(--foreground-muted)]">{image.desc}</p>
-                            </div>
+                    <div className="absolute inset-0 z-10 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
+                        <div className="text-white">
+                            <h3 className="font-bold text-2xl md:text-3xl">{image.title}</h3>
+                            <p className="mt-1 text-sm md:text-base">{image.desc}</p>
                         </div>
                     </div>
-
                 </Link>
             ))}
         </div>
@@ -64,4 +57,3 @@ const BannerSection = () => {
 }
 
 export default BannerSection
-
