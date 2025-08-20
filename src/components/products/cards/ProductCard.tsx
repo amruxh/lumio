@@ -21,7 +21,7 @@ const ProductCard = ({ product }:{ product: Product } ) => {
 
       <div className="flex-grow flex flex-col justify-between px-2 md:justify-end">
         <h3 className="line-clamp-1 w-full">{product.title}</h3>
-        <PriceSection discountPercentage={product.discountPercentage} price={product.price} mainText='text-lg' secText='text-sm' />
+        <PriceSection discountPercentage={product.discountPercentage} price={product.price} mainText='text-lg' secText='text-sm' className="flex gap-2 items-center"/>
         <div className="product-meta box-border flex flex-col justify-between items-start">
           <span className="product-category text-xs text-[var(--background)] mb-2 py-0.5 px-2 bg-gray-700 rounded-sm">{product.category.toUpperCase()}</span>
           <div className="product-rating text-sm flex mb-2">
